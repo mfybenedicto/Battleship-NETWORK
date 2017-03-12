@@ -6,7 +6,7 @@ public class Account
 	
 	public Account(String name, String pword)
 	{
-		username = name;
+		accName = name;
 		password = pword;
 	}
 	
