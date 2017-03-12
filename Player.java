@@ -18,6 +18,11 @@ public class Player
 		redPegs = r;
 	}
 	
+	public Account getAccount()
+	{
+		return acc;
+	}
+	
 	public void commandAttack()
 	{
 		//fires a position
