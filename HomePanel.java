@@ -64,8 +64,8 @@ public class HomePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(title.getImage(), 
-		  150, 40, 850, 290, 
-		  0, 0, 1186, 633,
+		  175, 30, 850, 270, 
+		  0, 0, 957, 524,
 		  null);
 	}
 }
