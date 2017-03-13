@@ -8,13 +8,16 @@ public class GameFrame extends JFrame {
 								REGISTER = "RegisterPanel";
 	
 	private JPanel cards;
-	private JPanel panelHome,
-				   panelLogin,
-				   panelRegister;
+	private HomePanel panelHome;
+	private RegisterPanel panelRegister;
+	private LoginPanel panelLogin;
 	
-	public GameFrame() {
+	private Controller controller;
+	
+	public GameFrame(Controller controller) {
 		//initialization
 		super("Battleships!");
+		this.controller = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(new Dimension(1000, 600));
 		setLocationRelativeTo(null);
@@ -23,9 +26,15 @@ public class GameFrame extends JFrame {
 		
 		//elements
 		cards = new JPanel(new CardLayout());
-		panelHome = new HomePanel();
+		panelHome = new HomePanel(controller);
+		panelRegister = new RegisterPanel(controller);
+		panelLogin = new LoginPanel(controller);
 		
 		cards.add(panelHome, HOME);
+		cards.add(panelRegister, REGISTER);
+		cards.add(panelLogin, LOGIN);
+		((CardLayout)cards.getLayout()).show(cards, HOME);
+		
 		
 		//adding
 		add(cards);
@@ -33,7 +42,15 @@ public class GameFrame extends JFrame {
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		new GameFrame();
+	public void showHomePanel() {
+		((CardLayout)cards.getLayout()).show(cards, HOME);
+	}
+	
+	public void showLoginPanel() {
+		((CardLayout)cards.getLayout()).show(cards, LOGIN);
+	}
+	
+	public void showRegisterPanel() {
+		((CardLayout)cards.getLayout()).show(cards, REGISTER);
 	}
 }
