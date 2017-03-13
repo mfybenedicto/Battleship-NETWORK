@@ -7,13 +7,15 @@ public class HomePanel extends JPanel {
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 600;
 	
-	private JLabel lblTitle;
 	private JButton btnLogin;
 	private JButton btnRegister;
 	
 	private Controller controller;
 	
-	private ImageIcon background;
+	private ImageIcon background,
+					  title,
+					  login,
+					  register;
 	
 	public HomePanel(Controller controller) {
 		//initialization
@@ -24,24 +26,30 @@ public class HomePanel extends JPanel {
 		
 		//elements
 		background = new ImageIcon(getClass().getResource("/images/background.png"));
+		title = new ImageIcon(getClass().getResource("/images/title.png"));
+		login = new ImageIcon(getClass().getResource("/images/login.png"));
+		register = new ImageIcon(getClass().getResource("/images/register.png"));
 		
-		lblTitle = new JLabel("BATTLESHIPS!");
-		lblTitle.setFont(new Font("Eras Bold ITC", Font.PLAIN, 44));
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setBounds(300, 89, 400, 200);
-		
-		btnLogin = new JButton("Login");
+		btnLogin = new JButton();
 		btnLogin.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
+		btnLogin.setIcon(login);
 		btnLogin.setBounds(300, 300, 400, 100);
+		btnLogin.setOpaque(false);
+		btnLogin.setContentAreaFilled(false);
+		btnLogin.setBorderPainted(false);
 		btnLogin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				controller.showLoginScreen();
 			}
 		});
 		
-		btnRegister = new JButton("Register");
+		btnRegister = new JButton();
 		btnRegister.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
-		btnRegister.setBounds(300, 400, 400, 100);
+		btnRegister.setIcon(register);
+		btnRegister.setBounds(300, 420, 400, 100);
+		btnRegister.setOpaque(false);
+		btnRegister.setContentAreaFilled(false);
+		btnRegister.setBorderPainted(false);
 		btnRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				controller.showRegisterScreen();
@@ -51,10 +59,13 @@ public class HomePanel extends JPanel {
 		//adding
 		add(btnLogin);
 		add(btnRegister);
-		add(lblTitle);
 	}
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
+		g.drawImage(title.getImage(), 
+		  150, 40, 850, 290, 
+		  0, 0, 1186, 633,
+		  null);
 	}
 }
