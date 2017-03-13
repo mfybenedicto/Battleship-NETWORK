@@ -4,6 +4,9 @@ import java.awt.event.*;
 
 public class RegisterPanel extends JPanel
 {
+	private final int WIDTH = 1000;
+	private final int HEIGHT = 600;
+	
 	private JLabel nameLabel;
 	private JLabel createPLabel;
 	private JLabel confirmPLabel;
@@ -15,6 +18,8 @@ public class RegisterPanel extends JPanel
 	private JButton backButton;
 	private JButton confirmButton;
 	
+	private ImageIcon background;
+	
 	private Controller controller;
 	
 	//attribute for the image(if optional)
@@ -25,9 +30,11 @@ public class RegisterPanel extends JPanel
 		this.controller = controller;
 		//initialization
 		setLayout(null);
-		setSize(new Dimension(1000, 600));
+		setSize(new Dimension(WIDTH, HEIGHT));
 
 		//elements
+		background = new ImageIcon(getClass().getResource("/images/background.png"));
+		
 		nameLabel = new JLabel("Enter your new Username:");
 		nameLabel.setBounds(300, 90, 170, 25);
 		nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -81,5 +88,9 @@ public class RegisterPanel extends JPanel
 		add(confirmButton);
 		
 		setVisible(true);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 	}
 }

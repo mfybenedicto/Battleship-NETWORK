@@ -4,6 +4,9 @@ import java.awt.event.*;
 
 public class LoginPanel extends JPanel
 {
+	private final int WIDTH = 1000;
+	private final int HEIGHT = 600;
+	
 	private JLabel nameLabel;
 	private JLabel pwordLabel;
 	
@@ -13,6 +16,8 @@ public class LoginPanel extends JPanel
 	private JButton backButton;
 	private JButton confirmButton;
 	
+	private ImageIcon background;
+	
 	private Controller controller;
 	
 	public LoginPanel(Controller controller)
@@ -21,9 +26,11 @@ public class LoginPanel extends JPanel
 		super();
 		this.controller = controller;
 		setLayout(null);
-		setSize(new Dimension(1000, 600));
+		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
+		background = new ImageIcon(getClass().getResource("/images/background.png"));
+		
 		nameLabel = new JLabel("Username:");
 		nameLabel.setBounds(350, 90, 70, 25);
 		nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -65,5 +72,9 @@ public class LoginPanel extends JPanel
 		add(pwordField);
 		add(backButton);
 		add(confirmButton);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 	}
 }

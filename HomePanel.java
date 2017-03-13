@@ -4,20 +4,27 @@ import java.awt.event.*;
 
 public class HomePanel extends JPanel {
 	
+	private final int WIDTH = 1000;
+	private final int HEIGHT = 600;
+	
 	private JLabel lblTitle;
 	private JButton btnLogin;
 	private JButton btnRegister;
 	
 	private Controller controller;
 	
+	private ImageIcon background;
+	
 	public HomePanel(Controller controller) {
 		//initialization
 		super();
 		this.controller = controller;
 		setLayout(null);
-		setSize(new Dimension(1000, 600));
+		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
+		background = new ImageIcon(getClass().getResource("/images/background.png"));
+		
 		lblTitle = new JLabel("BATTLESHIPS!");
 		lblTitle.setFont(new Font("Eras Bold ITC", Font.PLAIN, 44));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,5 +52,9 @@ public class HomePanel extends JPanel {
 		add(btnLogin);
 		add(btnRegister);
 		add(lblTitle);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 	}
 }
