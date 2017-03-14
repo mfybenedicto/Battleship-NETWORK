@@ -33,9 +33,9 @@ public class RegisterPanel extends JPanel
 		setSize(new Dimension(WIDTH, HEIGHT));
 
 		//elements
-		background = new ImageIcon(getClass().getResource("/images/background.png"));
-		confirm = new ImageIcon(getClass().getResource("/images/next.png"));
-		back = new ImageIcon(getClass().getResource("/images/back.png"));
+		background = new ImageIcon(getClass().getResource("images/background.png"));
+		confirm = new ImageIcon(getClass().getResource("images/next.png"));
+		back = new ImageIcon(getClass().getResource("images/back.png"));
 		
 		nameLabel = new JLabel("Enter your new Username:");
 		nameLabel.setForeground(Color.white);

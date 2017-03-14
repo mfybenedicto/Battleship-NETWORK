@@ -17,4 +17,12 @@ public class Controller {
 	public void showRegisterScreen() {
 		frame.showRegisterPanel();
 	}
+	
+	public void showMenuScreen() {
+		frame.showMenuPanel();
+	}
+	
+	public void showServerScreen(String type) {
+		frame.showServerPanel(type);
+	}
 }

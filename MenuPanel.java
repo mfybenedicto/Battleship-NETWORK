@@ -33,10 +33,10 @@ public class MenuPanel extends JPanel
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
-		background = new ImageIcon(getClass().getResource("/images/background.png"));
-		title = new ImageIcon(getClass().getResource("/images/title.png"));
-		createGame = new ImageIcon(getClass().getResource("/images/create.png"));
-		joinGame = new ImageIcon(getClass().getResource("/images/join.png"));
+		background = new ImageIcon(getClass().getResource("images/background.png"));
+		title = new ImageIcon(getClass().getResource("images/title.png"));
+		createGame = new ImageIcon(getClass().getResource("images/create.png"));
+		joinGame = new ImageIcon(getClass().getResource("images/join.png"));
 		
 		btnCreateGame = new JButton();
 		btnCreateGame.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
@@ -47,7 +47,7 @@ public class MenuPanel extends JPanel
 		btnCreateGame.setBorderPainted(false);
 		btnCreateGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//controller.showLoginScreen();
+				controller.showServerScreen(ServerPanel.CREATE);
 			}
 		});
 		
@@ -60,7 +60,7 @@ public class MenuPanel extends JPanel
 		btnJoinGame.setBorderPainted(false);
 		btnJoinGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//controller.showRegisterScreen();
+				controller.showServerScreen(ServerPanel.JOIN);
 			}
 		});		
 		

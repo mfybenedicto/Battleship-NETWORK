@@ -25,10 +25,10 @@ public class HomePanel extends JPanel {
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
-		background = new ImageIcon(getClass().getResource("/images/background.png"));
-		title = new ImageIcon(getClass().getResource("/images/title.png"));
-		login = new ImageIcon(getClass().getResource("/images/login.png"));
-		register = new ImageIcon(getClass().getResource("/images/register.png"));
+		background = new ImageIcon(getClass().getResource("images/background.png"));
+		title = new ImageIcon(getClass().getResource("images/title.png"));
+		login = new ImageIcon(getClass().getResource("images/login.png"));
+		register = new ImageIcon(getClass().getResource("images/register.png"));
 		
 		btnLogin = new JButton();
 		btnLogin.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
@@ -38,6 +38,7 @@ public class HomePanel extends JPanel {
 		btnLogin.setContentAreaFilled(false);
 		btnLogin.setBorderPainted(false);
 		btnLogin.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.showLoginScreen();
 			}
@@ -51,6 +52,7 @@ public class HomePanel extends JPanel {
 		btnRegister.setContentAreaFilled(false);
 		btnRegister.setBorderPainted(false);
 		btnRegister.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.showRegisterScreen();
 			}
@@ -61,6 +63,7 @@ public class HomePanel extends JPanel {
 		add(btnRegister);
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(title.getImage(), 

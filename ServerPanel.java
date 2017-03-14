@@ -2,16 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class LoginPanel extends JPanel
+public class ServerPanel extends JPanel
 {
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 600;
 	
-	private JLabel nameLabel;
-	private JLabel pwordLabel;
+	public final static String CREATE = "CREATE";
+	public final static String JOIN = "JOIN";
 	
-	private JTextField userName;
-	private JPasswordField pwordField;
+	private String type;
+	
+	private JLabel lblIP,
+				   lblPort;
+	
+	private JTextField txtIP,
+					   txtPort;
 	
 	private JButton backButton;
 	private JButton confirmButton;
@@ -22,7 +27,7 @@ public class LoginPanel extends JPanel
 	
 	private Controller controller;
 	
-	public LoginPanel(Controller controller)
+	public ServerPanel(Controller controller)
 	{
 		//initialization
 		super();
@@ -35,25 +40,25 @@ public class LoginPanel extends JPanel
 		confirm = new ImageIcon(getClass().getResource("images/next.png"));
 		back = new ImageIcon(getClass().getResource("images/back.png"));
 		
-		nameLabel = new JLabel("Username:");
-		nameLabel.setBounds(350, 90, 250, 25);
-		nameLabel.setForeground(Color.white);
-		nameLabel.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
-		//nameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		//nameLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		lblIP = new JLabel("IP Address:");
+		lblIP.setBounds(350, 90, 250, 25);
+		lblIP.setForeground(Color.white);
+		lblIP.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
+		//lblIP.setHorizontalAlignment(SwingConstants.RIGHT);
+		//lblIP.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		
-		pwordLabel = new JLabel("Password:");
-		pwordLabel.setBounds(350, 170, 250, 25);
-		pwordLabel.setForeground(Color.white);
-		pwordLabel.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
-		//pwordLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		//pwordLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		lblPort = new JLabel("Port:");
+		lblPort.setBounds(350, 170, 250, 25);
+		lblPort.setForeground(Color.white);
+		lblPort.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
+		//lblPort.setHorizontalAlignment(SwingConstants.RIGHT);
+		//lblPort.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		
-		userName = new JTextField();
-		userName.setBounds(350, 125, 250, 25);
+		txtIP = new JTextField();
+		txtIP.setBounds(350, 125, 250, 25);
 		
-		pwordField = new JPasswordField();
-		pwordField.setBounds(350, 205, 250, 25);
+		txtPort = new JPasswordField();
+		txtPort.setBounds(350, 205, 250, 25);
 		
 		backButton = new JButton();
 		backButton.setBounds(325, 285, 145, 40);
@@ -64,7 +69,7 @@ public class LoginPanel extends JPanel
 		backButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		backButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				controller.showHomeScreen();
+				controller.showMenuScreen();
 			}
 		});
 		
@@ -77,15 +82,15 @@ public class LoginPanel extends JPanel
 		confirmButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				controller.showHomeScreen();
+				controller.showMenuScreen();
 			}
 		});
 		
 		//add
-		add(nameLabel);
-		add(userName);
-		add(pwordLabel);
-		add(pwordField);
+		add(lblIP);
+		add(txtIP);
+		add(lblPort);
+		add(txtPort);
 		add(backButton);
 		add(confirmButton);
 	}
@@ -94,5 +99,9 @@ public class LoginPanel extends JPanel
 		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 		g.setColor(new Color(25, 50, 80));
 		g.fillRect(325, 80, 300, 180);
+	}
+	
+	public void setType(String type) {
+		this.type = type;
 	}
 }
