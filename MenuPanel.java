@@ -7,8 +7,15 @@ public class MenuPanel extends JPanel
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 600;
 	
-	private JButton btnCreateGame;
-	private JButton btnJoinGame;
+	private JPanel menuHeader;
+	
+	private JLabel lblUsername;
+	
+	private JButton btnLogout,
+					btnPic;
+	
+	private JButton btnCreateGame,
+					btnJoinGame;
 	
 	private Controller controller;
 	
@@ -28,8 +35,8 @@ public class MenuPanel extends JPanel
 		//elements
 		background = new ImageIcon(getClass().getResource("/images/background.png"));
 		title = new ImageIcon(getClass().getResource("/images/title.png"));
-		createGame = new ImageIcon(getClass().getResource("/images/login.png"));
-		joinGame = new ImageIcon(getClass().getResource("/images/register.png"));
+		createGame = new ImageIcon(getClass().getResource("/images/create.png"));
+		joinGame = new ImageIcon(getClass().getResource("/images/join.png"));
 		
 		btnCreateGame = new JButton();
 		btnCreateGame.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
@@ -57,7 +64,38 @@ public class MenuPanel extends JPanel
 			}
 		});		
 		
+		menuHeader = new JPanel();
+		menuHeader.setLayout(null);
+		menuHeader.setBackground(new Color(25, 50, 80));
+		menuHeader.setBounds(0, 0, 1000, 80);
+		
+		btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLogout.setBounds(890, 25, 100, 30);
+		btnLogout.setForeground(Color.white);
+		btnLogout.setOpaque(false);
+		btnLogout.setContentAreaFilled(false);
+		btnLogout.setBorderPainted(false);
+		
+		btnPic = new JButton();
+		btnPic.setIcon(createGame);
+		btnPic.setBounds(800, 0, 80, 80);
+		btnPic.setOpaque(false);
+		btnPic.setContentAreaFilled(false);
+		btnPic.setBorderPainted(false);
+		
+		lblUsername = new JLabel();
+		lblUsername.setText("TEST_name12345");
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUsername.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUsername.setForeground(Color.white);
+		lblUsername.setBounds(490, 25, 300, 30);
+		
 		//adding
+		menuHeader.add(btnLogout);
+		menuHeader.add(btnPic);
+		menuHeader.add(lblUsername);
+		add(menuHeader);
 		add(btnCreateGame);
 		add(btnJoinGame);
 	}
@@ -65,7 +103,7 @@ public class MenuPanel extends JPanel
 	public void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(title.getImage(), 
-		  175, 30, 850, 270, 
+		  250, 100, 775, 270, 
 		  0, 0, 957, 524,
 		  null);
 	}
