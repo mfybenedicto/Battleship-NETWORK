@@ -5,12 +5,14 @@ public class GameFrame extends JFrame {
 	
 	private final static String HOME = "HomePanel",
 								LOGIN = "LoginPanel",
-								REGISTER = "RegisterPanel";
+								REGISTER = "RegisterPanel",
+								MENU = "MenuPanel";
 	
 	private JPanel cards;
 	private HomePanel panelHome;
 	private RegisterPanel panelRegister;
 	private LoginPanel panelLogin;
+	private MenuPanel panelMenu;
 	
 	private Controller controller;
 	
@@ -29,11 +31,13 @@ public class GameFrame extends JFrame {
 		panelHome = new HomePanel(controller);
 		panelRegister = new RegisterPanel(controller);
 		panelLogin = new LoginPanel(controller);
+		panelMenu = new MenuPanel(controller);
 		
 		cards.add(panelHome, HOME);
 		cards.add(panelRegister, REGISTER);
 		cards.add(panelLogin, LOGIN);
-		((CardLayout)cards.getLayout()).show(cards, HOME);
+		cards.add(panelMenu, MENU);
+		((CardLayout)cards.getLayout()).show(cards, MENU);
 		
 		
 		//adding
