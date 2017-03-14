@@ -37,7 +37,7 @@ public class GameFrame extends JFrame {
 		cards.add(panelRegister, REGISTER);
 		cards.add(panelLogin, LOGIN);
 		cards.add(panelMenu, MENU);
-		((CardLayout)cards.getLayout()).show(cards, MENU);
+		((CardLayout)cards.getLayout()).show(cards, HOME);
 		
 		
 		//adding
