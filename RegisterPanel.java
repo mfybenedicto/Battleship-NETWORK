@@ -23,11 +23,13 @@ public class RegisterPanel extends JPanel
 					  back;
 	
 	private Controller controller;
+	private DBConnect db;
 	
-	public RegisterPanel(Controller controller)
+	public RegisterPanel(Controller controller, DBConnect db)
 	{
 		super();
 		this.controller = controller;
+		this.db = db;
 		//initialization
 		setLayout(null);
 		setSize(new Dimension(WIDTH, HEIGHT));
@@ -76,6 +78,7 @@ public class RegisterPanel extends JPanel
 		backButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		backButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				clearFields();
 				controller.showHomeScreen();
 			}
 		});
@@ -89,7 +92,26 @@ public class RegisterPanel extends JPanel
 		confirmButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				controller.showHomeScreen();
+				if (db.isUsernameAvailable(userName.getText())) {
+					int nameLength = userName.getText().length();
+					int passLength = createPassword.getText().length();
+					
+					if (!(nameLength >= 4 && nameLength <= 45))
+						JOptionPane.showMessageDialog(null, "Username must be 4 to 45 characters long only.");
+					if (!(passLength >= 4 && passLength <=  45))
+						JOptionPane.showMessageDialog(null, "Password must be 4 to 45 characters long only.");
+					if (!(createPassword.getText().equals(confirmPassword.getText())))
+						JOptionPane.showMessageDialog(null, "The input passwords do not match!");
+					
+					if (nameLength >= 4 && nameLength <= 45 && passLength >=4 && passLength <= 45 &&
+						createPassword.getText().equals(confirmPassword.getText())) {
+						db.addUser(userName.getText(), createPassword.getText());
+						controller.showHomeScreen();
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Username is already taken!");
+					
+				clearFields();
 			}
 		});
 		
@@ -104,6 +126,12 @@ public class RegisterPanel extends JPanel
 		add(confirmButton);
 		
 		setVisible(true);
+	}
+	
+	public void clearFields() {
+		userName.setText("");
+		createPassword.setText("");
+		confirmPassword.setText("");
 	}
 	
 	public void paintComponent(Graphics g) {

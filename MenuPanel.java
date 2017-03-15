@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.ImageFilter;
 
 public class MenuPanel extends JPanel
 {
@@ -18,17 +19,19 @@ public class MenuPanel extends JPanel
 					btnJoinGame;
 	
 	private Controller controller;
+	private DBConnect db;
 	
 	private ImageIcon background,
 					  title,
 					  createGame,
 					  joinGame;
 					  
-	public MenuPanel(Controller controller)
+	public MenuPanel(Controller controller, DBConnect db)
 	{
 		//initialization
 		super();
 		this.controller = controller;
+		this.db = db;
 		setLayout(null);
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
@@ -76,6 +79,12 @@ public class MenuPanel extends JPanel
 		btnLogout.setOpaque(false);
 		btnLogout.setContentAreaFilled(false);
 		btnLogout.setBorderPainted(false);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.showHomeScreen();
+				controller.updateLoggedInUser("", null);
+			}
+		});
 		
 		btnPic = new JButton();
 		btnPic.setIcon(createGame);
@@ -83,6 +92,15 @@ public class MenuPanel extends JPanel
 		btnPic.setOpaque(false);
 		btnPic.setContentAreaFilled(false);
 		btnPic.setBorderPainted(false);
+		btnPic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					updateProfilePic((fc.getSelectedFile()).toString());
+					db.updateProfilePic(lblUsername.getText(), (fc.getSelectedFile()).toString());
+				}
+			}
+		});
 		
 		lblUsername = new JLabel();
 		lblUsername.setText("TEST_name12345");
@@ -98,6 +116,20 @@ public class MenuPanel extends JPanel
 		add(menuHeader);
 		add(btnCreateGame);
 		add(btnJoinGame);
+	}
+	
+	public void updateUsername(String username) {
+		lblUsername.setText(username);
+	}
+	
+	public void updateProfilePic(String picpath) {
+		if (picpath != null && picpath.length() > 0) {
+			ImageIcon newicon = new ImageIcon(picpath);
+			Image newimg = newicon.getImage();
+			newimg = newimg.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+			btnPic.setIcon(new ImageIcon(newimg));
+		}
+		else btnPic.setIcon(createGame); //will add default later
 	}
 	
 	public void paintComponent(Graphics g) {

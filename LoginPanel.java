@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class LoginPanel extends JPanel
 {
@@ -21,12 +22,14 @@ public class LoginPanel extends JPanel
 					  back;
 	
 	private Controller controller;
+	private DBConnect db;
 	
-	public LoginPanel(Controller controller)
+	public LoginPanel(Controller controller, DBConnect db)
 	{
 		//initialization
 		super();
 		this.controller = controller;
+		this.db = db;
 		setLayout(null);
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
@@ -64,6 +67,7 @@ public class LoginPanel extends JPanel
 		backButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		backButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				clearFields();
 				controller.showHomeScreen();
 			}
 		});
@@ -77,7 +81,16 @@ public class LoginPanel extends JPanel
 		confirmButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 14));
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				controller.showHomeScreen();
+				String username = userName.getText();
+				String password = pwordField.getText();
+				int userID = db.login(username, password);
+				if (userID != -1) {
+					ArrayList<String> info = db.getUserInfo(userID);
+					controller.updateLoggedInUser(info.get(0), info.get(2));
+					controller.showMenuScreen();
+				} else
+					JOptionPane.showMessageDialog(null, "Username and/or password is incorrect.");
+				clearFields();
 			}
 		});
 		
@@ -88,6 +101,11 @@ public class LoginPanel extends JPanel
 		add(pwordField);
 		add(backButton);
 		add(confirmButton);
+	}
+	
+	public void clearFields() {
+		userName.setText("");
+		pwordField.setText("");
 	}
 	
 	public void paintComponent(Graphics g) {
