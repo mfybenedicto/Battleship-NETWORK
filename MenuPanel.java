@@ -36,10 +36,10 @@ public class MenuPanel extends JPanel
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
-		background = new ImageIcon(getClass().getResource("images/background.png"));
-		title = new ImageIcon(getClass().getResource("images/title.png"));
-		createGame = new ImageIcon(getClass().getResource("images/create.png"));
-		joinGame = new ImageIcon(getClass().getResource("images/join.png"));
+		background = new ImageIcon(getClass().getResource("background.png"));
+		title = new ImageIcon(getClass().getResource("title.png"));
+		createGame = new ImageIcon(getClass().getResource("create.png"));
+		joinGame = new ImageIcon(getClass().getResource("join.png"));
 		
 		btnCreateGame = new JButton();
 		btnCreateGame.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));

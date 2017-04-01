@@ -7,7 +7,8 @@ public class GameFrame extends JFrame {
 								LOGIN = "LoginPanel",
 								REGISTER = "RegisterPanel",
 								MENU = "MenuPanel",
-								SERVER = "ServerPanel";
+								SERVER = "ServerPanel",
+								GAME = "BoardPanel";
 	
 	private JPanel cards;
 	private HomePanel panelHome;
@@ -15,6 +16,7 @@ public class GameFrame extends JFrame {
 	private LoginPanel panelLogin;
 	private MenuPanel panelMenu;
 	private ServerPanel panelServer;
+	private GamePanel panelGame;
 	
 	private Controller controller;
 	private DBConnect db;
@@ -37,13 +39,15 @@ public class GameFrame extends JFrame {
 		panelLogin = new LoginPanel(controller, db);
 		panelMenu = new MenuPanel(controller, db);
 		panelServer = new ServerPanel(controller);
+		panelGame = new GamePanel(controller);
 		
 		cards.add(panelHome, HOME);
 		cards.add(panelRegister, REGISTER);
 		cards.add(panelLogin, LOGIN);
 		cards.add(panelMenu, MENU);
 		cards.add(panelServer, SERVER);
-		((CardLayout)cards.getLayout()).show(cards, HOME);
+		cards.add(panelGame, GAME);
+		((CardLayout)cards.getLayout()).show(cards, GAME);
 		
 		
 		//adding
@@ -71,6 +75,10 @@ public class GameFrame extends JFrame {
 	public void showServerPanel(String type) {
 		panelServer.setType(type);
 		((CardLayout)cards.getLayout()).show(cards, SERVER);
+	}
+	
+	public void showBoardPanel() {
+		((CardLayout)cards.getLayout()).show(cards, GAME);
 	}
 	
 	public void updateLoggedInUser(String username, String picpath) {

@@ -25,10 +25,10 @@ public class HomePanel extends JPanel {
 		setSize(new Dimension(WIDTH, HEIGHT));
 		
 		//elements
-		background = new ImageIcon(getClass().getResource("images/background.png"));
-		title = new ImageIcon(getClass().getResource("images/title.png"));
-		login = new ImageIcon(getClass().getResource("images/login.png"));
-		register = new ImageIcon(getClass().getResource("images/register.png"));
+		background = new ImageIcon(getClass().getResource("background.png"));
+		title = new ImageIcon(getClass().getResource("title.png"));
+		login = new ImageIcon(getClass().getResource("login.png"));
+		register = new ImageIcon(getClass().getResource("register.png"));
 		
 		btnLogin = new JButton();
 		btnLogin.setFont(new Font("Eras Demi ITC", Font.PLAIN, 26));
